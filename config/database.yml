@@ -48,7 +48,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: biotech-import_production
-  username: biotech-import
-  password: <%= ENV['BIOTECH-IMPORT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
