@@ -1,10 +1,12 @@
 class LoginController < ApplicationController
+  respond_to :json
   def login
-    user = User.where(params.require(:user).permit(:username, :password, :token)).first
     secret = Rails.application.secrets.secret_key_base
-    token = JWT.encode({ user_id: user.id }, secret, 'HS256')
+    user = User.where(params.require(:user).permit(:username, :token)).first
 
-    if user
+    if user && user.valid_password?(params[:user][:password])
+      token = JWT.encode({ user_id: user.id }, secret, 'HS256')
+
       response = {
         status: 200,
         message: 'Login correcto',
