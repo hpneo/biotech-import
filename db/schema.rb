@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20170917060032) do
   end
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "fullname"
-    t.string   "phone"
-    t.string   "address"
+    t.string   "fullname",   null: false
+    t.string   "phone",      null: false
+    t.string   "address",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20170917060032) do
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "product_type_id"
-    t.string   "name"
-    t.integer  "quantity"
+    t.integer  "product_type_id",                null: false
+    t.string   "name",                           null: false
+    t.integer  "quantity",                       null: false
     t.decimal  "width",           precision: 10
     t.decimal  "height",          precision: 10
     t.decimal  "thickness",       precision: 10
@@ -72,16 +72,16 @@ ActiveRecord::Schema.define(version: 20170917060032) do
   end
 
   create_table "sales", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "product_id"
-    t.integer  "quantity"
-    t.decimal  "price",      precision: 5, scale: 2
+    t.integer  "product_id",                         null: false
+    t.integer  "quantity",                           null: false
+    t.decimal  "price",      precision: 5, scale: 2, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["product_id"], name: "index_sales_on_product_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 20170917060032) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "token"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
   add_foreign_key "products", "product_types"

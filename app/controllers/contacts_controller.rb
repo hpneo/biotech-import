@@ -1,4 +1,4 @@
-class ContactsController < ApplicationController
+class ContactsController < ApiController
   def create
     contact = Contact.new(params.require(:contact).permit(:fullname, :phone, :address))
 

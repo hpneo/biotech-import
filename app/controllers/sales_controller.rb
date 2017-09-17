@@ -1,4 +1,4 @@
-class SalesController < ApplicationController
+class SalesController < ApiController
   def create
     sale = Sale.new(params.require(:sale).permit(:product_id, :quantity, :price))
 
