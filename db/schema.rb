@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917060032) do
+ActiveRecord::Schema.define(version: 20170919033919) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 20170917060032) do
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "product_type_id",                null: false
-    t.string   "name",                           null: false
-    t.integer  "quantity",                       null: false
-    t.decimal  "width",           precision: 10
-    t.decimal  "height",          precision: 10
-    t.decimal  "thickness",       precision: 10
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "product_type_id",                         null: false
+    t.string   "name",                                    null: false
+    t.integer  "quantity",                                null: false
+    t.decimal  "width",           precision: 5, scale: 2
+    t.decimal  "height",          precision: 5, scale: 2
+    t.decimal  "thickness",       precision: 5, scale: 2
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
   end
 

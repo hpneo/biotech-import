@@ -1,7 +1,7 @@
 class ProductsController < ApiController
   def index
     if params[:product_type_id].present?
-      products = Product.where(product_type_id: product_type_id)
+      products = Product.where(product_type_id: params[:product_type_id].to_i)
     else
       products = Product.all
     end
