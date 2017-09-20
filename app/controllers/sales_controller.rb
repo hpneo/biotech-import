@@ -4,7 +4,10 @@ class SalesController < ApiController
 
     response = {}
 
-    if sale.save
+    if sale.quantity > sale.product.quantity
+      response[:status] = 500
+      response[:message] = "Error al crear Venta:\nNo se pueden vender más productos de los existentes"
+    elsif sale.save
       response[:status] = 200
       response[:message] = 'Venta creada correctamente'
     else
