@@ -88,7 +88,13 @@ Accept: application/json
 
 {
   "status": 200,
-  "message": "Contacto creado correctamente"
+  "message": "Contacto creado correctamente",
+  "contact": {
+    id: 1,
+    "fullname": "Gustavo Leon",
+    "phone": "555123456",
+    "address": "Calle Uno #123"
+  }
 }
 ```
 
@@ -101,6 +107,7 @@ Accept: application/json
 {
   "sale": {
     "product_id": 1,
+    "contact_id": 1,
     "quantity": 1,
     "price": 5.5
   }

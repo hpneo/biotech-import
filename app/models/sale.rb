@@ -1,5 +1,6 @@
 class Sale < ApplicationRecord
   belongs_to :product
+  belongs_to :contact
 
   after_create :update_product_quantity
 
