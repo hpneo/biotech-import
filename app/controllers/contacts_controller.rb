@@ -1,4 +1,15 @@
 class ContactsController < ApiController
+  def index
+    contacts = Contact.all
+
+    response = {
+      status: 200,
+      contacts: contacts
+    }
+
+    render json: response
+  end
+
   def create
     contact = Contact.new(params.require(:contact).permit(:fullname, :phone, :address))
 

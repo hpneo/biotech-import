@@ -33,6 +33,7 @@ class ProductsController < ApiController
       if product.save
         response[:status] = 200
         response[:message] = 'Producto creado correctamente'
+        response[:product] = product
       else
         response[:status] = 500
         response[:message] = "Error al crear Producto:\n#{product.errors.full_messages.join("\n")}"
