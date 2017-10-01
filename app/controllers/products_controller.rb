@@ -28,17 +28,36 @@ class ProductsController < ApiController
   def create
     product = Product.new(params.require(:product).permit(:product_type_id, :name, :quantity, :width, :height, :thickness))
 
-      response = {}
+    response = {}
 
-      if product.save
-        response[:status] = 200
-        response[:message] = 'Producto creado correctamente'
-        response[:product] = product
-      else
-        response[:status] = 500
-        response[:message] = "Error al crear Producto:\n#{product.errors.full_messages.join("\n")}"
-      end
+    if product.save
+      response[:status] = 200
+      response[:message] = 'Producto creado correctamente'
+      response[:product] = product
+    else
+      response[:status] = 500
+      response[:message] = "Error al crear Producto:\n#{product.errors.full_messages.join("\n")}"
+    end
 
-      render json: response
+    render json: response
+  end
+
+  def update
+    product = Product.find(params[:id])
+
+    product.quantity = product.quantity + params[:product][:quantity].to_i
+
+    response = {}
+
+    if product.save
+      response[:status] = 200
+      response[:message] = 'Producto actualizado correctamente'
+      response[:product] = product
+    else
+      response[:status] = 500
+      response[:message] = "Error al actualizar Producto:\n#{product.errors.full_messages.join("\n")}"
+    end
+
+    render json: response
   end
 end

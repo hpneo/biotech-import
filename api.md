@@ -107,6 +107,35 @@ Accept: application/json
 ```
 
 ```http
+PATCH http://biotech-import.herokuapp.com/products/1
+Authorization: TOKEN
+Content-Type: application/json
+Accept: application/json
+
+{
+  "product": {
+    "quantity": 20
+  }
+}
+
+{
+  "status": 200,
+  "message": "Producto actualizado correctamente",
+  "contact": {
+    "id": 1,
+    "product_type_id": 1,
+    "name": "Plancha 30x40cm",
+    "quantity": 20,
+    "width": "0.3",
+    "height": "0.4",
+    "thickness": "0.2",
+    "created_at": "2017-09-19T03:42:57.000Z",
+    "updated_at": "2017-09-19T03:43:55.000Z"
+  }
+}
+```
+
+```http
 GET http://biotech-import.herokuapp.com/contacts
 Authorization: TOKEN
 Content-Type: application/json
