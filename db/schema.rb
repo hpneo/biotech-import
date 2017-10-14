@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924215739) do
+ActiveRecord::Schema.define(version: 20171014214912) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -78,8 +78,10 @@ ActiveRecord::Schema.define(version: 20170924215739) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "contact_id"
+    t.integer  "user_id"
     t.index ["contact_id"], name: "index_sales_on_contact_id", using: :btree
     t.index ["product_id"], name: "index_sales_on_product_id", using: :btree
+    t.index ["user_id"], name: "index_sales_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -103,4 +105,5 @@ ActiveRecord::Schema.define(version: 20170924215739) do
   add_foreign_key "products", "product_types"
   add_foreign_key "sales", "contacts"
   add_foreign_key "sales", "products"
+  add_foreign_key "sales", "users"
 end

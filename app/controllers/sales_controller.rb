@@ -1,6 +1,9 @@
 class SalesController < ApiController
   def create
     sale = Sale.new(params.require(:sale).permit(:product_id, :contact_id, :quantity, :price))
+    sale.user = current_user
+
+    puts sale.to_json
 
     response = {}
 
@@ -14,6 +17,17 @@ class SalesController < ApiController
       response[:status] = 500
       response[:message] = "Error al crear Venta:\n#{sale.errors.full_messages.join("\n")}"
     end
+
+    render json: response
+  end
+
+  def index
+    sales = Sale.where(user_id: current_user.id)
+
+    response = {
+      status: 200,
+      sales: sales.map { |sale| SaleSerializer.new(sale) }
+    }
 
     render json: response
   end
